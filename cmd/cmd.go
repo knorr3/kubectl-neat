@@ -18,7 +18,8 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"log"
 	"os"
 	"os/exec"
 	"unicode"
@@ -59,9 +60,12 @@ kubectl neat -f ./my-pod.json --output yaml`,
 		var err error
 		if *inputFile == "-" {
 			stdin := cmd.InOrStdin()
-			in, err = ioutil.ReadAll(stdin)
+			in, err = io.ReadAll(stdin)
+			if err != nil {
+				return err
+			}
 		} else {
-			in, err = ioutil.ReadFile(*inputFile)
+			in, err = os.ReadFile(*inputFile)
 			if err != nil {
 				return err
 			}
