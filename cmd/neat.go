@@ -98,8 +98,6 @@ func Neat(in string) (string, error) {
 	// parse plugins
 	var plugins []plugin
 	if viper.IsSet("plugins") {
-		fmt.Println("plugins specified") //TODO
-
 		err = viper.UnmarshalKey("plugins", &plugins)
 		if err != nil {
 			log.Fatalf("unable to decode into struct, %v", err)

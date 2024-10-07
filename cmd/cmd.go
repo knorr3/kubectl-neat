@@ -74,8 +74,6 @@ func initConfig() {
 			log.Fatalf("Error reading in config: %s", err)
 		}
 	}
-
-	fmt.Println(viper.GetViper().ConfigFileUsed()) //TODO
 }
 
 // Execute is the entry point for the command package
