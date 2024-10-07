@@ -29,7 +29,13 @@ func NeatOpenShift4(in string) (string, error) {
 	// serviceaccount neating
 	draft, err = neatServiceAccount(draft)
 	if err != nil {
-		return draft, fmt.Errorf("error in neatMetadata : %v", err)
+		return draft, fmt.Errorf("error in neatServiceAccount : %v", err)
+	}
+
+	// defaults neating
+	draft, err = NeatDefaults(draft)
+	if err != nil {
+		return draft, fmt.Errorf("error in NeatDefaults : %v", err)
 	}
 
 	fmt.Println("Plugin OpenShift4 executed")
